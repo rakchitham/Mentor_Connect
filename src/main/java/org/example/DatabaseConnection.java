@@ -1,4 +1,5 @@
 package org.example;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,10 +9,10 @@ public class DatabaseConnection {
         Connection conn = null;
         try {
             String url = "jdbc:mysql://localhost:3306/mentor_connect_app";
-            String user = "root";
-            String password = "root";
+            String user = System.getenv("DB_USER");        // Get username from environment
+            String password = System.getenv("DB_PASSWORD"); // Get password from environment
             conn = DriverManager.getConnection(url, user, password);
-            System.out.println(" database connected successfully!.");
+            System.out.println("Database connected successfully!");
         } catch (SQLException e) {
             System.out.println("Failed to connect to the database.");
             e.printStackTrace();
@@ -19,4 +20,3 @@ public class DatabaseConnection {
         return conn;
     }
 }
-
